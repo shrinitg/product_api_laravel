@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('admin/getData', [adminController::class, 'getData']);
+Route::post('admin/create', [adminController::class, 'create']);
