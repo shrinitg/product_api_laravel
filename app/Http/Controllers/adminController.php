@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use response;
 use App\Models\products;
+use App\Models\Purchase;
 use App\Models\PriceHistory;
 use Validator;
 
@@ -14,9 +15,18 @@ class adminController extends Controller
     //
 
     /////////  get all unpurchased data  /////////////
-    public function getData()
+    public function getDataUnp()
     {
         $fetch_data = products::all();
+        return response()->json($fetch_data);
+    }
+    ////////////////////////////////////////////////////
+
+
+    /////////  get all purchased data  /////////////
+    public function getDataPur()
+    {
+        $fetch_data = Purchase::all();
         return response()->json($fetch_data);
     }
     ////////////////////////////////////////////////////
@@ -91,6 +101,12 @@ class adminController extends Controller
             $prev_price = products::select('price')->where('id', $id)->get();
             /////////////////////////////////////////////////////////
 
+            //////////   check if id exist    ///////////
+            if($prev_price[0] == null) {
+                return response()->json(['response' => 'Item does not exist for this id']);
+            }
+            /////////////////////////////////////////////
+
             /////////    new and previous price are different   //////////
             if( $prev_price[0]['price'] != $request->price ) {
 
@@ -126,7 +142,7 @@ class adminController extends Controller
 
             /////////   entry updated successully   //////////////
             else {
-                return response()->json(['response' => 'Items details has been updated successfully']);
+                return response()->json(['response' => 'Items details have been updated successfully']);
             }
             //////////////////////////////////////////
 
@@ -134,5 +150,29 @@ class adminController extends Controller
 
     }
     ///////////////////////////////////////////////////
+
+
+    //////////   get price history in year    ////////////
+    public function getPriceHist($year)
+    {
+
+        ///////   get entries whose price updated in given year  //////////
+        $get_year = PriceHistory::whereYear('created_at', $year)->get();
+        ///////////////////////////////////////////////////////////////////
+
+        //////////    no entry was found   ///////////////////
+        if( empty($get_year[0]) ) {
+            return response()->json(['response' => 'No items price was updated in this year. Try another year']);
+        }
+        //////////////////////////////////////////////////////
+
+        //////////    send retrieved data   //////////////////
+        else{
+            return response()->json($get_year);
+        }
+        //////////////////////////////////////////////////////
+
+    }
+    //////////////////////////////////////////////////////
 
 }
