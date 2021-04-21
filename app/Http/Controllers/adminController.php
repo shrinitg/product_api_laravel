@@ -102,7 +102,7 @@ class adminController extends Controller
             /////////////////////////////////////////////////////////
 
             //////////   check if id exist    ///////////
-            if($prev_price[0] == null) {
+            if( empty($prev_price[0]) ) {
                 return response()->json(['response' => 'Item does not exist for this id']);
             }
             /////////////////////////////////////////////
@@ -174,5 +174,6 @@ class adminController extends Controller
 
     }
     //////////////////////////////////////////////////////
+
 
 }

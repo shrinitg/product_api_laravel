@@ -1,0 +1,355 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Example API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/admin/getDataPur": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "get details of purchased products to admin",
+                "description": "get details with simple get request",
+                "operationId": "getDataPur",
+                "requestBody": {
+                    "description": "get details with simple get request",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "[{'id':1,'user_name':'hello','user_contact':'7737805106','product_id':'4','created_at':'2021-04-20T17:53:27.000000Z','updated_at':'2021-04-20T17:53:27.000000Z'}]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/admin/create": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Create Product",
+                "description": "create product with title, description, category and price",
+                "operationId": "create",
+                "requestBody": {
+                    "description": "Pass item credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "category",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "text",
+                                        "example": "100"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Item has been created successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/admin/update/{id}": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Update Product Details",
+                "description": "Update the product details and if price changes then store in price history",
+                "operationId": "update",
+                "requestBody": {
+                    "description": "Pass item credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "category",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "text",
+                                        "example": "100"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Items details have been updated successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/admin/getPriceHist/{year}": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "get price history in particular year to admin",
+                "description": "get details with simple get request along with year",
+                "operationId": "getPriceHist",
+                "requestBody": {
+                    "description": "get details with simple get request",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "[{'id':1,'product_id':'1','new_price':'100','created_at':'2021-04-20T14:24:56.000000Z','updated_at':'2021-04-20T14:24:56.000000Z'}]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/admin/getDataUnp": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "get details of unpurchased product to admin",
+                "description": "get details with simple get request",
+                "operationId": "getDataUnp",
+                "requestBody": {
+                    "description": "get details with simple get request",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "[{'id':3,'title':'test3','description':'test3','category':'test3','price':'2000','created_at':'2021-04-20T17:20:35.000000Z','updated_at':'2021-04-20T17:20:35.000000Z'}]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/user/getDataUnp": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get product details for user",
+                "description": "get details with simple get request",
+                "operationId": "getDataUnp",
+                "requestBody": {
+                    "description": "get details with simple get request",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "[{'id':3,'title':'test3','description':'test3','category':'test3','price':'2000','created_at':'2021-04-20T17:20:35.000000Z','updated_at':'2021-04-20T17:20:35.000000Z'}]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/user/purchased": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "User purchase product ",
+                "description": "Purchase with product id, user's name and user's contact and remove that entry from products table",
+                "operationId": "purchase",
+                "requestBody": {
+                    "description": "Pass user credentials and product id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "contact",
+                                    "name",
+                                    "product_id"
+                                ],
+                                "properties": {
+                                    "user_contact": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "7737805106"
+                                    },
+                                    "user_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Shrinit"
+                                    },
+                                    "product_id": {
+                                        "type": "integer",
+                                        "format": "text",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Purchase has been made successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
