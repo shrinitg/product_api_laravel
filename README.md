@@ -18,7 +18,7 @@ To test the APIs, please follow the below steps ( these 4 steps are common for b
 
 4. Now, you are all set to test the APIs! <br>
 
-Now, Let's understand the requests: <br>
+Now, Let's understand the Admin requests: <br>
 
 1. getDataPur[GET] => the end-point is used to fetch all the purchased item details along with user name and contact. <br>
 
